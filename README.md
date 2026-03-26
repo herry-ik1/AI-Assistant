@@ -2,8 +2,6 @@
 
 A fully responsive, intelligent AI assistant that showcases professional services including Web Development, Graphic Designing, AI Solutions, and UI/UX Design.
 
-![AI Assistant Preview](https://haris-assistant.netlify.app/)
-
 ## 🚀 Features
 
 - **💬 Real-time AI Chat** - Interactive assistant that answers all questions
