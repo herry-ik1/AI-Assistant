@@ -13,15 +13,6 @@
 -  **Custom Favicon** - Branded "N" logo for Nexvora
 -  **Fast Performance** - Lightweight and optimized
 
-##  Services with Complete Pricing
-
-| Service | Description | Pricing Range |
-|---------|-------------|---------------|
-|  Web Development | Custom websites, E-commerce, React/Next.js apps | $100 - $2000+ |
-|  App Development | iOS, Android, Cross-platform apps | $500 - $5000+ |
-|  AI Chatbot | Custom AI assistants, OpenAI integration | $100 - $800 |
-|  Graphic Designing | Logos, Branding, Social Media, Packaging | $20 - $400 |
-
 ##  Responsive Breakpoints
 
 - **Mobile** (320px - 768px) - Optimized compact layout
