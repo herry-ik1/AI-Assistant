@@ -1,30 +1,40 @@
-# 🤖 Haris Sabir AI Assistant
+#  Nexvora AI Assistant
 
-A fully responsive, intelligent AI assistant that showcases professional services including Web Development, Graphic Designing, AI Solutions, and UI/UX Design.
+**Nexvora AI Assistant** is a modern, fully responsive intelligent chatbot that provides complete information about digital services including Web Development, App Development, AI Chatbot Solutions, and Graphic Designing. Built with HTML, CSS, and JavaScript, it features a sleek dark theme, real-time chat functionality, and comprehensive pricing details for all services.
 
-## 🚀 Features
+## Features
 
-- **💬 Real-time AI Chat** - Interactive assistant that answers all questions
-- **📱 Fully Responsive** - Works perfectly on Mobile, Tablet, Laptop, and 4K screens
-- **🎨 Beautiful UI** - Modern glass-morphism design with smooth animations
-- **💰 Smart Pricing** - Complete pricing information for all services
-- **⚡ Quick Questions** - One-click buttons for common queries
-- **🔍 Intelligent Responses** - AI that understands and responds to service-related questions
-- **🖼️ Custom Favicon** - Professional SVG favicon with "H" branding
+-  **Real-time AI Chat** - Intelligent responses to all user queries
+-  **100% Responsive** - Perfect on all devices (Mobile, Tablet, Laptop, 4K)
+-  **Nexvora Dark Theme** - Matches the official Nexvora website design
+-  **Complete Pricing** - Detailed pricing for all services and packages
+-  **Quick Questions** - One-click buttons for common queries
+-  **4 Service Categories** - Web Dev, App Dev, AI Chatbot, Graphic Design
+-  **Custom Favicon** - Branded "N" logo for Nexvora
+-  **Fast Performance** - Lightweight and optimized
 
-## 🛠️ Services Covered
+##  Services with Complete Pricing
 
 | Service | Description | Pricing Range |
 |---------|-------------|---------------|
-| 💻 Web Development | React, Next.js, Custom Websites | $100 - $2000+ |
-| 🎨 Graphic Designing | Logos, Branding, Social Media | $20 - $400 |
-| 🧠 AI Assistant | Chatbots, OpenAI Integration | $100 - $800 |
-| 📐 UI/UX Design | Figma, Prototyping, Design Systems | $30 - $500 |
+|  Web Development | Custom websites, E-commerce, React/Next.js apps | $100 - $2000+ |
+|  App Development | iOS, Android, Cross-platform apps | $500 - $5000+ |
+|  AI Chatbot | Custom AI assistants, OpenAI integration | $100 - $800 |
+|  Graphic Designing | Logos, Branding, Social Media, Packaging | $20 - $400 |
 
-## 📱 Responsive Design
+##  Responsive Breakpoints
 
-- **Mobile (320px-768px)** - Optimized layout, compact design
-- **Tablet (769px-1024px)** - Balanced layout with full features
-- **Laptop (1025px-1439px)** - Standard layout with sidebar
-- **Laptop L (1440px-2559px)** - Expanded layout with larger fonts
-- **4K (2560px+)** - Ultra-wide support, enhanced readability
+- **Mobile** (320px - 768px) - Optimized compact layout
+- **Tablet** (769px - 1024px) - Balanced design
+- **Laptop** (1025px - 1439px) - Full sidebar layout
+- **Laptop L** (1440px - 2559px) - Expanded view
+- **4K** (2560px+) - Ultra-wide support
+
+##  Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/herry-ik1/Nexvora-AI-Assistant.git
+
+# Open index.html in your browser
+open index.html
