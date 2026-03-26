@@ -1,836 +1,904 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <meta name="description" content="Haris Sabir AI Assistant - Web Development, UI/UX Design, Graphic Design & AI Solutions">
-  <meta name="theme-color" content="#6366f1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="description" content="Nexvora AI Assistant - Innovative Digital Solutions">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="author" content="Nexvora">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230a0a0a'/%3E%3Crect width='100' height='100' rx='24' fill='url(%23grad)' fill-opacity='0.15'/%3E%3Ctext x='50' y='68' font-size='48' font-weight='bold' text-anchor='middle' fill='url(%23grad)' font-family='Arial, sans-serif'%3EH%3C/text%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%235a67d8'/%3E%3Cstop offset='100%25' stop-color='%237f9cf5'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
-  <title>Haris Sabir | AI Assistant - Web Dev, Design & AI Solutions</title>
-  
-  <!-- Google Fonts & Font Awesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico.png"> 
 
-    body {
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c0a2a 100%);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      position: relative;
-    }
+    <title>Nexvora AI Assistant | Innovative Digital Solutions</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 60%);
-      pointer-events: none;
-    }
+        html {
+            scroll-behavior: auto;
+        }
 
-    .assistant-wrapper {
-      max-width: 1400px;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 2rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(99, 102, 241, 0.2);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
+        /* Dark Mode Variables - Matching Nexvora */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --navbar-bg: rgba(26, 26, 46, 0.95);
+            --text-color: #ffffff;
+            --text-secondary: #cccccc;
+            --card-bg: rgba(26, 26, 46, 0.95);
+            --service-bg: rgba(26, 26, 46, 0.95);
+            --footer-bg: rgba(26, 26, 46, 0.95);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --border-color: rgba(102, 126, 234, 0.3);
+        }
 
-    /* header - fixed alignment */
-    .brand-header {
-      padding: 1rem 1.5rem;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1));
-      border-bottom: 1px solid rgba(99, 102, 241, 0.3);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-color);
+        }
 
-    .profile-info {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-    }
+        /* Navbar */
+        .navbar {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
 
-    .avatar-icon {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-      flex-shrink: 0;
-    }
+        .nav-logo {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-    .title {
-      display: flex;
-      flex-direction: column;
-    }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
-    .title h2 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #fff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.3;
-    }
+        .nav-menu {
+            display: flex;
+            gap: clamp(20px, 3vw, 40px);
+            list-style: none;
+        }
 
-    .title p {
-      font-size: 0.7rem;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.2rem;
-    }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
 
-    .portfolio-link {
-      background: rgba(99, 102, 241, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      color: #c7d2fe;
-      font-size: 0.75rem;
-      font-weight: 500;
-      transition: 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      flex-shrink: 0;
-    }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
 
-    .portfolio-link:hover {
-      background: #6366f1;
-      color: white;
-      transform: translateY(-2px);
-    }
+        .nav-menu a:hover {
+            color: #667eea;
+        }
 
-    /* main layout */
-    .main-dashboard {
-      display: flex;
-      flex-wrap: wrap;
-    }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
 
-    .chat-section {
-      flex: 2.5;
-      min-width: 260px;
-      display: flex;
-      flex-direction: column;
-      padding: 1.2rem;
-    }
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
 
-    .services-sidebar {
-      flex: 1.2;
-      min-width: 240px;
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(4px);
-      padding: 1.2rem;
-      border-left: 1px solid rgba(99, 102, 241, 0.2);
-    }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
 
-    /* messages */
-    .messages-container {
-      height: 420px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding-right: 0.5rem;
-      margin-bottom: 1rem;
-    }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
 
-    @media (max-width: 640px) {
-      .messages-container {
-        height: 380px;
-      }
-    }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
 
-    .messages-container::-webkit-scrollbar {
-      width: 4px;
-    }
-    .messages-container::-webkit-scrollbar-track {
-      background: #1e293b;
-      border-radius: 10px;
-    }
-    .messages-container::-webkit-scrollbar-thumb {
-      background: #6366f1;
-      border-radius: 10px;
-    }
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 20px 5%;
+            min-height: calc(100vh - 80px);
+        }
 
-    .msg {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      animation: slideUp 0.3s ease;
-    }
+        .assistant-hero {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
 
-    .user-msg {
-      justify-content: flex-end;
-    }
+        .assistant-hero h1 {
+            font-size: clamp(32px, 6vw, 48px);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
 
-    .user-msg .bubble {
-      background: linear-gradient(115deg, #6366f1, #8b5cf6);
-      border-radius: 1.5rem 1rem 1rem 1.5rem;
-      color: white;
-    }
+        .assistant-hero p {
+            font-size: clamp(16px, 3vw, 18px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .bot-msg .bubble {
-      background: rgba(30, 41, 59, 0.9);
-      border-radius: 1rem 1.5rem 1.5rem 1rem;
-      color: #e2e8f0;
-      border: 1px solid #4f46e5;
-    }
+        /* Chat Layout */
+        .chat-layout {
+            display: flex;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
 
-    .avatar-icon-small {
-      width: 32px;
-      height: 32px;
-      background: #1e293b;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.9rem;
-    }
+        .chat-area {
+            flex: 2;
+            min-width: 280px;
+            background: var(--card-bg);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
 
-    .user-msg .avatar-icon-small {
-      background: #6366f1;
-    }
+        .chat-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .bubble {
-      max-width: 80%;
-      padding: 0.7rem 1rem;
-      font-size: 0.85rem;
-      line-height: 1.45;
-      font-weight: 450;
-      word-break: break-word;
-    }
+        .chat-header h3 {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    @media (max-width: 480px) {
-      .bubble {
-        max-width: 85%;
-        font-size: 0.8rem;
-        padding: 0.6rem 0.9rem;
-      }
-    }
+        .chat-messages {
+            height: 450px;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-    .time-stamp {
-      font-size: 0.55rem;
-      opacity: 0.6;
-      margin-top: 4px;
-      text-align: right;
-    }
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
 
-    /* typing */
-    .typing-bubble {
-      display: flex;
-      gap: 5px;
-      padding: 0.6rem 1rem;
-      background: rgba(30, 41, 59, 0.9);
-      border-radius: 1.5rem;
-      width: fit-content;
-    }
-    .typing-bubble span {
-      width: 6px;
-      height: 6px;
-      background: #818cf8;
-      border-radius: 50%;
-      animation: blink 1.2s infinite;
-    }
-    @keyframes blink {
-      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(-4px); }
-    }
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
 
-    /* input */
-    .input-wrapper {
-      display: flex;
-      gap: 0.6rem;
-      background: #0f172a;
-      border-radius: 3rem;
-      padding: 0.3rem 0.3rem 0.3rem 1rem;
-      border: 1px solid #334155;
-      transition: 0.2s;
-    }
-    .input-wrapper:focus-within {
-      border-color: #6366f1;
-      box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
-    }
-    .input-wrapper input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      padding: 0.7rem 0;
-      font-size: 0.9rem;
-      color: #f1f5f9;
-      outline: none;
-      font-family: 'Inter', sans-serif;
-      min-width: 0;
-    }
-    .input-wrapper input::placeholder {
-      color: #5b6e8c;
-      font-size: 0.8rem;
-    }
-    .input-wrapper button {
-      background: #6366f1;
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      color: white;
-      cursor: pointer;
-      transition: 0.2s;
-      flex-shrink: 0;
-    }
-    .input-wrapper button:hover {
-      background: #818cf8;
-      transform: scale(0.96);
-    }
+        .user-message {
+            justify-content: flex-end;
+        }
 
-    /* sidebar cards */
-    .service-card {
-      background: rgba(15, 23, 42, 0.6);
-      border-radius: 1rem;
-      padding: 0.8rem;
-      margin-bottom: 0.8rem;
-      border: 1px solid #334155;
-    }
-    .service-card h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #a5b4fc;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .service-card p {
-      font-size: 0.7rem;
-      color: #cbd5e1;
-      line-height: 1.4;
-    }
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.5rem;
-    }
-    .skill-tags span {
-      background: #1e293b;
-      padding: 0.15rem 0.5rem;
-      border-radius: 1rem;
-      font-size: 0.6rem;
-      color: #a5f3fc;
-    }
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.6rem;
-    }
-    .quick-chip {
-      background: #1e293b;
-      border: none;
-      padding: 0.35rem 0.7rem;
-      border-radius: 2rem;
-      font-size: 0.65rem;
-      color: #cbd5e6;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .quick-chip:hover {
-      background: #6366f1;
-      color: white;
-    }
+        .bot-message {
+            justify-content: flex-start;
+        }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
 
-    /* responsive - fix alignment issues */
-    @media (max-width: 768px) {
-      body {
-        padding: 0.8rem;
-      }
-      .assistant-wrapper {
-        border-radius: 1.5rem;
-      }
-      .main-dashboard {
-        flex-direction: column;
-      }
-      .chat-section {
-        padding: 1rem;
-      }
-      .services-sidebar {
-        border-left: none;
-        border-top: 1px solid rgba(99, 102, 241, 0.2);
-        padding: 1rem;
-      }
-      .brand-header {
-        padding: 0.8rem 1rem;
-        flex-wrap: wrap;
-      }
-      .avatar-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 1.2rem;
-      }
-      .title h2 {
-        font-size: 1rem;
-      }
-      .profile-info {
-        flex: 1;
-      }
-      .portfolio-link {
-        margin-left: auto;
-      }
-    }
+        .user-message .message-avatar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
 
-    @media (max-width: 580px) {
-      .brand-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .profile-info {
-        width: 100%;
-      }
-      .portfolio-link {
-        margin-left: 0;
-        align-self: flex-start;
-      }
-    }
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
 
-    @media (max-width: 480px) {
-      .profile-info {
-        gap: 0.5rem;
-      }
-      .quick-chip {
-        padding: 0.25rem 0.6rem;
-        font-size: 0.6rem;
-      }
-      .service-card {
-        padding: 0.6rem;
-      }
-      .input-wrapper input::placeholder {
-        font-size: 0.7rem;
-      }
-    }
-  </style>
+        .user-message .message-bubble {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot-message .message-bubble {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .message-time {
+            font-size: 0.65rem;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            padding: 5px 5px 5px 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+
+        .input-wrapper input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .input-wrapper input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .input-wrapper button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .input-wrapper button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            width: fit-content;
+            border: 1px solid var(--border-color);
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typingBounce 1.2s infinite;
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--service-bg);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .service-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #667eea;
+            margin-top: 10px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            background: var(--footer-bg);
+            padding: 30px 5%;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-right {
+                gap: 15px;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--navbar-bg);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                transition: 0.3s;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .chat-layout {
+                flex-direction: column;
+            }
+            .message-bubble {
+                max-width: 85%;
+            }
+            .chat-messages {
+                height: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar">
+        <a class="nav-logo" onclick="goToHome()">Nexvora</a>
+        <div class="nav-right">
+            <button class="back-btn" onclick="goToHome()">← Back to Website</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
 
-<div class="assistant-wrapper">
-  <div class="brand-header">
-    <div class="profile-info">
-      <div class="avatar-icon">
-        <i class="fas fa-robot"></i>
-      </div>
-      <div class="title">
-        <h2>Haris Sabir Assistant</h2>
-        <p><i class="fas fa-code"></i> Web Dev · <i class="fas fa-palette"></i> Graphic Design · <i class="fas fa-brain"></i> AI Solutions · <i class="fas fa-dollar-sign"></i> Affordable Pricing</p>
-      </div>
+    <div class="main-content">
+        <div class="assistant-hero">
+            <h1>Nexvora AI Assistant</h1>
+            <p>Your intelligent companion for exploring our digital solutions</p>
+        </div>
+
+        <div class="chat-layout">
+            <div class="chat-area">
+                <div class="chat-header">
+                    <h3><i>💬</i> Ask Me Anything</h3>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-bubble">
+                            Hello! 👋 Welcome to Nexvora! I'm your AI assistant. I can help you with detailed information about our services and pricing:<br><br>
+                            💻 Web Development<br>
+                            📱 App Development<br>
+                            🤖 AI Chatbot<br>
+                            🎨 Graphic Designing<br><br>
+                            Ask me about any service for complete details with pricing!
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-area">
+                    <div class="input-wrapper">
+                        <input type="text" id="userInput" placeholder="Ask about Web Dev, App Dev, AI Chatbot, Graphic Design..." autocomplete="off">
+                        <button id="sendBtn">➤</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="service-card" onclick="askAbout('web')">
+                    <div class="service-icon">💻</div>
+                    <h4>Web Development</h4>
+                    <p>Custom websites, e-commerce, React/Next.js apps</p>
+                    <span class="price-badge">$100 - $2000+</span>
+                </div>
+                <div class="service-card" onclick="askAbout('app')">
+                    <div class="service-icon">📱</div>
+                    <h4>App Development</h4>
+                    <p>iOS, Android, Cross-platform apps</p>
+                    <span class="price-badge">$500 - $5000+</span>
+                </div>
+                <div class="service-card" onclick="askAbout('ai')">
+                    <div class="service-icon">🤖</div>
+                    <h4>AI Chatbot</h4>
+                    <p>Custom AI chatbots, OpenAI integration</p>
+                    <span class="price-badge">$100 - $800</span>
+                </div>
+                <div class="service-card" onclick="askAbout('graphic')">
+                    <div class="service-icon">🎨</div>
+                    <h4>Graphic Designing</h4>
+                    <p>Logo, branding, social media, packaging</p>
+                    <span class="price-badge">$20 - $400</span>
+                </div>
+                <div class="service-card">
+                    <h4>⚡ Quick Questions</h4>
+                    <div class="quick-buttons">
+                        <button class="quick-btn" data-q="What web development services do you offer with pricing?">💻 Web Dev Details</button>
+                        <button class="quick-btn" data-q="What app development services do you offer with pricing?">📱 App Dev Details</button>
+                        <button class="quick-btn" data-q="What AI chatbot services do you offer with pricing?">🤖 AI Chatbot Details</button>
+                        <button class="quick-btn" data-q="What graphic designing services do you offer with pricing?">🎨 Graphic Design Details</button>
+                        <button class="quick-btn" data-q="What are all your prices?">💰 All Prices</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href="https://haris-sabir.netlify.app" target="_blank" class="portfolio-link">
-      <i class="fas fa-external-link-alt"></i> View Portfolio
-    </a>
-  </div>
 
-  <div class="main-dashboard">
-    <div class="chat-section">
-      <div class="messages-container" id="chatBox">
-        <div class="msg bot-msg">
-          <div class="avatar-icon-small"><i class="fas fa-robot"></i></div>
-          <div class="bubble">
-             Hi! I'm Haris Sabir's AI assistant.<br><br>
-            🚀 I know about all his <strong>services & pricing</strong>:<br>
-            • 💻 Web Development<br>
-            • 🎨 Graphic Designing<br>
-            • 🧠 AI Assistant Development<br>
-            • 📐 UI/UX Design<br><br>
-            💰 <strong>Ask me about pricing!</strong> I can tell you package rates, hourly rates, and custom project costs.<br><br>
-            Try: <strong>"Web development services"</strong> or <strong>"What are your prices?"</strong> or <strong>"How much does a website cost?"</strong>
-            <div class="time-stamp">Just now</div>
-          </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; Founded by Haris Sabir 2026 Nexvora. All rights reserved. | Innovative Digital Solutions</p>
         </div>
-      </div>
+    </footer>
 
-      <div class="input-wrapper">
-        <input type="text" id="messageInput" placeholder="Ask about services, pricing, packages, or projects..." autocomplete="off">
-        <button id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
-      </div>
-    </div>
+    <script>
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+        window.scrollTo(0, 0);
 
-    <div class="services-sidebar">
-      <div class="service-card">
-        <h4><i class="fas fa-code"></i> Web Development</h4>
-        <p>Custom websites, React apps, E-commerce, Landing pages</p>
-        <div class="skill-tags">
-          <span>React</span><span>Next.js</span><span>Tailwind</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <h4><i class="fas fa-palette"></i> Graphic Designing</h4>
-        <p>Logo design, Brand identity, Social media posts, Banners</p>
-        <div class="skill-tags">
-          <span>Photoshop</span><span>Illustrator</span><span>Canva</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <h4><i class="fas fa-brain"></i> AI Assistant</h4>
-        <p>Custom AI chatbots, Smart assistants, Website AI integration</p>
-        <div class="skill-tags">
-          <span>OpenAI</span><span>Custom AI</span><span>Chatbots</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <h4><i class="fas fa-dollar-sign"></i> Pricing Packages</h4>
-        <p>💎 Basic: $100-300 | 🚀 Pro: $300-800 | 👑 Enterprise: $800+</p>
-        <div class="skill-tags">
-          <span>Affordable</span><span>Custom Quotes</span><span>Flexible</span>
-        </div>
-      </div>
-      
-      <div class="service-card">
-        <h4><i class="fas fa-bolt"></i> Quick Ask</h4>
-        <div class="quick-actions">
-          <button class="quick-chip" data-question="What web development services do you offer?">💻 Web Dev</button>
-          <button class="quick-chip" data-question="What graphic designing services do you offer?">🎨 Graphic Design</button>
-          <button class="quick-chip" data-question="What AI assistant services do you offer?">🧠 AI Assistant</button>
-          <button class="quick-chip" data-question="What are your prices?">💰 Pricing</button>
-          <button class="quick-chip" data-question="How can I hire you?">🤝 Hire Me</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        const chatContainer = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
 
-<script>
-  const chatContainer = document.getElementById('chatBox');
-  const userInput = document.getElementById('messageInput');
-  const sendBtn = document.getElementById('sendMsgBtn');
+        function getTime() {
+            return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
 
-  function getTime() {
-    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  }
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
 
-  function scrollToBottom() {
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-  }
+        function addMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message');
+            msgDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            const avatar = isUser ? '👤' : '🤖';
+            msgDiv.innerHTML = `
+                ${!isUser ? `<div class="message-avatar">${avatar}</div>` : ''}
+                <div class="message-bubble">
+                    ${text.replace(/\n/g, '<br>')}
+                    <div class="message-time">${getTime()}</div>
+                </div>
+                ${isUser ? `<div class="message-avatar">${avatar}</div>` : ''}
+            `;
+            chatContainer.appendChild(msgDiv);
+            scrollToBottom();
+        }
 
-  function addMessage(sender, text, isUser = false) {
-    const msgDiv = document.createElement('div');
-    msgDiv.classList.add('msg');
-    msgDiv.classList.add(isUser ? 'user-msg' : 'bot-msg');
-    
-    const avatar = isUser 
-      ? '<div class="avatar-icon-small"><i class="fas fa-user"></i></div>' 
-      : '<div class="avatar-icon-small"><i class="fas fa-brain"></i></div>';
-    
-    msgDiv.innerHTML = `
-      ${!isUser ? avatar : ''}
-      <div class="bubble">
-        ${text.replace(/\n/g, '<br>')}
-        <div class="time-stamp">${getTime()}</div>
-      </div>
-      ${isUser ? avatar : ''}
-    `;
-    chatContainer.appendChild(msgDiv);
-    scrollToBottom();
-  }
+        let typingIndicator = null;
+        function showTyping() {
+            if (typingIndicator) typingIndicator.remove();
+            typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('message', 'bot-message');
+            typingIndicator.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="typing-indicator"><span></span><span></span><span></span></div>
+            `;
+            chatContainer.appendChild(typingIndicator);
+            scrollToBottom();
+        }
 
-  let typingElem = null;
-  function showTyping() {
-    if (typingElem) removeTyping();
-    typingElem = document.createElement('div');
-    typingElem.classList.add('msg', 'bot-msg');
-    typingElem.id = 'typingIndicator';
-    typingElem.innerHTML = `
-      <div class="avatar-icon-small"><i class="fas fa-microchip"></i></div>
-      <div class="typing-bubble"><span></span><span></span><span></span></div>
-    `;
-    chatContainer.appendChild(typingElem);
-    scrollToBottom();
-  }
+        function removeTyping() {
+            if (typingIndicator) {
+                typingIndicator.remove();
+                typingIndicator = null;
+            }
+        }
 
-  function removeTyping() {
-    if (typingElem) {
-      typingElem.remove();
-      typingElem = null;
-    }
-  }
+        // Complete AI Response with Detailed Services and Pricing
+        function getResponse(msg) {
+            const lowerMsg = msg.toLowerCase();
+            
+            // ========== WEB DEVELOPMENT - COMPLETE DETAILS ==========
+            if (lowerMsg.includes('web development') || (lowerMsg.includes('web') && lowerMsg.includes('service')) || (lowerMsg.includes('website') && !lowerMsg.includes('app'))) {
+                return "💻 <strong>Nexvora Web Development Services - Complete Details:</strong><br><br>" +
+                       "<strong>📌 Website Types:</strong><br>" +
+                       "✅ Business/Corporate Websites ($300-$800)<br>" +
+                       "✅ E-commerce Websites ($500-$2000)<br>" +
+                       "✅ Portfolio Websites ($100-$400)<br>" +
+                       "✅ Landing Pages ($100-$300)<br>" +
+                       "✅ Blog/News Websites ($200-$600)<br>" +
+                       "✅ Educational/LMS Websites ($400-$1200)<br>" +
+                       "✅ Non-Profit/Charity Websites ($150-$500)<br><br>" +
+                       "<strong>📌 Technologies:</strong><br>" +
+                       "✅ React.js / Next.js Applications<br>" +
+                       "✅ WordPress / CMS Development<br>" +
+                       "✅ HTML/CSS/JavaScript Websites<br>" +
+                       "✅ Tailwind CSS / Bootstrap<br>" +
+                       "✅ Node.js / Express Backend<br><br>" +
+                       "<strong>📌 Features Included:</strong><br>" +
+                       "✅ Fully Responsive Design<br>" +
+                       "✅ SEO Optimized<br>" +
+                       "✅ Fast Loading Speed<br>" +
+                       "✅ Contact Forms<br>" +
+                       "✅ Google Analytics Integration<br>" +
+                       "✅ Social Media Integration<br>" +
+                       "✅ 1 Month Free Support<br><br>" +
+                       "<strong>💰 Pricing Packages:</strong><br>" +
+                       "• Basic: $100-$300 (3-5 pages, responsive)<br>" +
+                       "• Standard: $300-$800 (Custom design, CMS, 10-15 pages)<br>" +
+                       "• Premium: $800-$2000+ (E-commerce, React/Next.js, Advanced features)<br><br>" +
+                       "✨ <strong>Free consultation!</strong> Let's discuss your project!";
+            }
+            
+            // ========== APP DEVELOPMENT - COMPLETE DETAILS ==========
+            if (lowerMsg.includes('app development') || lowerMsg.includes('mobile app') || (lowerMsg.includes('app') && lowerMsg.includes('service'))) {
+                return "📱 <strong>Nexvora App Development Services - Complete Details:</strong><br><br>" +
+                       "<strong>📌 Platform Options:</strong><br>" +
+                       "✅ iOS Native (Swift) - $800-$4000<br>" +
+                       "✅ Android Native (Kotlin) - $700-$3500<br>" +
+                       "✅ Cross-Platform (React Native) - $500-$3000<br>" +
+                       "✅ Cross-Platform (Flutter) - $500-$3000<br>" +
+                       "✅ Progressive Web Apps (PWA) - $300-$1500<br><br>" +
+                       "<strong>📌 App Types:</strong><br>" +
+                       "✅ Business Apps<br>" +
+                       "✅ E-commerce Apps<br>" +
+                       "✅ Social Media Apps<br>" +
+                       "✅ Educational Apps<br>" +
+                       "✅ Healthcare Apps<br>" +
+                       "✅ On-Demand Services Apps<br>" +
+                       "✅ Food Delivery Apps<br>" +
+                       "✅ Booking/Reservation Apps<br><br>" +
+                       "<strong>📌 Features Included:</strong><br>" +
+                       "✅ User Authentication<br>" +
+                       "✅ Push Notifications<br>" +
+                       "✅ Payment Integration (Stripe/PayPal)<br>" +
+                       "✅ Database Integration<br>" +
+                       "✅ Admin Panel<br>" +
+                       "✅ App Store & Play Store Deployment<br>" +
+                       "✅ 1 Month Free Support<br><br>" +
+                       "<strong>💰 Pricing Packages:</strong><br>" +
+                       "• Basic: $500-$1000 (Simple app, 5-10 screens)<br>" +
+                       "• Standard: $1000-$2500 (Full features, backend integration)<br>" +
+                       "• Premium: $2500-$5000+ (Complex apps, custom features)<br><br>" +
+                       "✨ <strong>Free consultation!</strong> Let's discuss your app idea!";
+            }
+            
+            // ========== AI CHATBOT - COMPLETE DETAILS ==========
+            if (lowerMsg.includes('ai chatbot') || lowerMsg.includes('chatbot') || lowerMsg.includes('bot') || (lowerMsg.includes('ai') && lowerMsg.includes('service'))) {
+                return "🤖 <strong>Nexvora AI Chatbot Services - Complete Details:</strong><br><br>" +
+                       "<strong>📌 Chatbot Types:</strong><br>" +
+                       "✅ Website Chatbots ($100-$400)<br>" +
+                       "✅ WhatsApp Business Bots ($150-$500)<br>" +
+                       "✅ Facebook Messenger Bots ($100-$400)<br>" +
+                       "✅ Telegram Bots ($80-$300)<br>" +
+                       "✅ Instagram DM Bots ($100-$350)<br>" +
+                       "✅ Voice Assistants ($300-$800)<br>" +
+                       "✅ Custom AI Solutions (Negotiable)<br><br>" +
+                       "<strong>📌 Features:</strong><br>" +
+                       "✅ OpenAI GPT-4 Integration<br>" +
+                       "✅ Natural Language Processing<br>" +
+                       "✅ 24/7 Automated Support<br>" +
+                       "✅ Lead Generation<br>" +
+                       "✅ Customer Support Automation<br>" +
+                       "✅ Multi-language Support<br>" +
+                       "✅ Analytics Dashboard<br>" +
+                       "✅ Easy Integration with Your Website<br><br>" +
+                       "<strong>📌 Use Cases:</strong><br>" +
+                       "✅ Customer Support Bots<br>" +
+                       "✅ Lead Generation Bots<br>" +
+                       "✅ Appointment Booking Bots<br>" +
+                       "✅ FAQ Automation<br>" +
+                       "✅ E-commerce Shopping Assistants<br>" +
+                       "✅ Educational/Tutoring Bots<br><br>" +
+                       "<strong>💰 Pricing Packages:</strong><br>" +
+                       "• Basic: $100-$250 (Simple rule-based chatbot)<br>" +
+                       "• Standard: $250-$500 (AI-powered with basic integration)<br>" +
+                       "• Premium: $500-$800+ (Advanced AI, multi-platform, custom features)<br><br>" +
+                       "✨ <strong>Special:</strong> AI assistant like Nexvora starting at $150!";
+            }
+            
+            // ========== GRAPHIC DESIGNING - COMPLETE DETAILS ==========
+            if (lowerMsg.includes('graphic design') || lowerMsg.includes('logo') || lowerMsg.includes('branding') || lowerMsg.includes('poster') || lowerMsg.includes('flyer') || lowerMsg.includes('social media')) {
+                return "🎨 <strong>Nexvora Graphic Designing Services - Complete Details:</strong><br><br>" +
+                       "<strong>📌 Logo & Branding:</strong><br>" +
+                       "✅ Logo Design ($30-$100)<br>" +
+                       "✅ Brand Identity Package ($150-$400)<br>" +
+                       "✅ Business Card Design ($20-$50)<br>" +
+                       "✅ Letterhead Design ($15-$40)<br>" +
+                       "✅ Brand Guidelines Book ($80-$200)<br><br>" +
+                       "<strong>📌 Print Design:</strong><br>" +
+                       "✅ Flyers & Brochures ($20-$60)<br>" +
+                       "✅ Posters ($25-$70)<br>" +
+                       "✅ Banners & Roll-ups ($30-$80)<br>" +
+                       "✅ Magazine/Book Covers ($50-$150)<br>" +
+                       "✅ Packaging Design ($50-$200)<br><br>" +
+                       "<strong>📌 Digital Design:</strong><br>" +
+                       "✅ Social Media Posts ($5-$15 each / $50-$150 for 10)<br>" +
+                       "✅ Instagram/Facebook Stories ($10-$25 each)<br>" +
+                       "✅ YouTube Thumbnails ($10-$30 each)<br>" +
+                       "✅ Web Banners ($20-$60)<br>" +
+                       "✅ Email Newsletter Templates ($30-$100)<br>" +
+                       "✅ E-book Covers ($40-$120)<br><br>" +
+                       "<strong>📌 Additional Services:</strong><br>" +
+                       "✅ Custom Illustrations ($30-$200)<br>" +
+                       "✅ Infographics ($40-$120)<br>" +
+                       "✅ Product Mockups ($15-$40)<br>" +
+                       "✅ T-Shirt/Apparel Design ($25-$80)<br>" +
+                       "✅ Menu Design ($30-$90)<br><br>" +
+                       "<strong>💰 Package Deals:</strong><br>" +
+                       "• Basic Branding: Logo + Business Card = $80<br>" +
+                       "• Standard Branding: Logo + Business Card + Social Media Kit = $150<br>" +
+                       "• Premium Branding: Complete Identity Package = $250<br>" +
+                       "• Social Media Package: 10 Posts + 5 Stories = $100<br><br>" +
+                       "✨ <strong>20% discount on first order!</strong>";
+            }
+            
+            // ========== ALL PRICES SUMMARY ==========
+            if (lowerMsg.includes('all prices') || lowerMsg.includes('all pricing') || (lowerMsg.includes('price') && lowerMsg.includes('list')) || (lowerMsg.includes('all') && lowerMsg.includes('services'))) {
+                return "💰 <strong>Nexvora Complete Pricing Guide:</strong><br><br>" +
+                       "<strong>💻 Web Development:</strong><br>" +
+                       "• Basic: $100-$300 | Standard: $300-$800 | Premium: $800-$2000+<br><br>" +
+                       "<strong>📱 App Development:</strong><br>" +
+                       "• Basic: $500-$1000 | Standard: $1000-$2500 | Premium: $2500-$5000+<br><br>" +
+                       "<strong>🤖 AI Chatbot:</strong><br>" +
+                       "• Basic: $100-$250 | Standard: $250-$500 | Premium: $500-$800+<br><br>" +
+                       "<strong>🎨 Graphic Designing:</strong><br>" +
+                       "• Logo: $30-$100 | Brand Identity: $150-$400 | Social Media: $50-$150/10 posts<br><br>" +
+                       "<strong>✨ Special Offers:</strong><br>" +
+                       "• 10% off for startups<br>" +
+                       "• 15% off for complete website + branding package<br>" +
+                       "• Free consultation for all projects<br><br>" +
+                       "📞 Contact us for exact quote: nexvoratech.netlify.app";
+            }
+            
+            // ========== HIRE/CONTACT ==========
+            if (lowerMsg.includes('hire') || lowerMsg.includes('contact') || lowerMsg.includes('work with') || lowerMsg.includes('how to')) {
+                return "🤝 <strong>Work with Nexvora:</strong><br><br>" +
+                       "📌 <strong>Available Services:</strong><br>" +
+                       "• 💻 Web Development - Starting $100<br>" +
+                       "• 📱 App Development - Starting $500<br>" +
+                       "• 🤖 AI Chatbot - Starting $100<br>" +
+                       "• 🎨 Graphic Design - Starting $20<br><br>" +
+                       "📌 <strong>How to Connect:</strong><br>" +
+                       "🌐 Website: nexvoratech.netlify.app<br>" +
+                       "📧 Contact form available on our website<br>" +
+                       "📱 WhatsApp: Click the WhatsApp button on our website<br><br>" +
+                       "✨ <strong>Free consultation!</strong> Tell us about your project and get a custom quote.<br><br>" +
+                       "🚀 Let's bring your ideas to life!";
+            }
+            
+            // ========== GREETING ==========
+            if (lowerMsg.match(/^(hi|hello|hey|assalam|salam|namaste|greetings)/i)) {
+                return "👋 Welcome to <strong>Nexvora</strong>! I'm your AI assistant.<br><br>" +
+                       "I can provide complete details about:<br><br>" +
+                       "💻 <strong>Web Development</strong> - Custom websites, React/Next.js, E-commerce ($100-$2000+)<br>" +
+                       "📱 <strong>App Development</strong> - iOS, Android, Cross-platform ($500-$5000+)<br>" +
+                       "🤖 <strong>AI Chatbot</strong> - Custom AI assistants, OpenAI integration ($100-$800)<br>" +
+                       "🎨 <strong>Graphic Designing</strong> - Logos, branding, social media ($20-$400)<br><br>" +
+                       "💡 <strong>Try asking:</strong><br>" +
+                       "• 'Web development services with pricing'<br>" +
+                       "• 'App development services with pricing'<br>" +
+                       "• 'AI chatbot services with pricing'<br>" +
+                       "• 'Graphic designing services with pricing'<br>" +
+                       "• 'All prices'<br><br>" +
+                       "What would you like to know?";
+            }
+            
+            // ========== DEFAULT ==========
+            return "💡 <strong>I'm Nexvora AI Assistant!</strong><br><br>" +
+                   "Ask me for complete details about:<br><br>" +
+                   "• 💻 <strong>Web Development</strong> - Websites, E-commerce, React/Next.js<br>" +
+                   "• 📱 <strong>App Development</strong> - iOS, Android, Cross-platform<br>" +
+                   "• 🤖 <strong>AI Chatbot</strong> - Custom AI assistants, OpenAI integration<br>" +
+                   "• 🎨 <strong>Graphic Designing</strong> - Logos, branding, social media<br><br>" +
+                   "💰 <strong>Quick Price Range:</strong><br>" +
+                   "Web: $100-2000+ | App: $500-5000+ | AI: $100-800 | Graphic: $20-400<br><br>" +
+                   "Try: <strong>'Web development services with pricing'</strong> for complete details!";
+        }
 
-  // Complete AI Response with PRICING information
-  function getAIResponse(userMessage) {
-    const msg = userMessage.toLowerCase().trim();
-    
-    // ========== PRICING INFORMATION (NEW & COMPREHENSIVE) ==========
-    if (msg.includes('price') || msg.includes('pricing') || msg.includes('cost') || msg.includes('rate') || 
-        msg.includes('charge') || msg.includes('how much') || msg.includes('package') || msg.includes('budget') ||
-        msg.includes('what are your prices') || msg.includes('fees') || msg.includes('payment')) {
-      return "💰 <strong>Haris Sabir's Pricing Structure:</strong><br><br>" +
-             "<strong>📌 PROJECT-BASED PRICING (Recommended):</strong><br>" +
-             "• <strong>Basic Package ($100 - $300)</strong><br>" +
-             "  - Landing pages, Portfolio websites, Simple 3-5 page business sites<br>" +
-             "  - Basic responsive design, Contact forms, SEO optimization<br><br>" +
-             "• <strong>Standard Package ($300 - $800)</strong><br>" +
-             "  - Custom business websites, React.js applications<br>" +
-             "  - E-commerce sites (5-20 products), Admin panels<br>" +
-             "  - Advanced features, Database integration, API connections<br><br>" +
-             "• <strong>Premium Package ($800 - $2000+)</strong><br>" +
-             "  - Full-stack web applications, Complex e-commerce platforms<br>" +
-             "  - Custom AI assistants, Enterprise solutions<br>" +
-             "  - Complete branding package (logo + website + graphics)<br><br>" +
-             "<strong>📌 HOURLY RATE:</strong><br>" +
-             "• $15 - $25 per hour (depending on project complexity)<br>" +
-             "• Minimum 10 hours for small tasks<br><br>" +
-             "<strong>📌 GRAPHIC DESIGN PRICING:</strong><br>" +
-             "• Logo Design: $30 - $100<br>" +
-             "• Social Media Package (10 posts): $50 - $150<br>" +
-             "• Complete Brand Identity: $150 - $400<br>" +
-             "• Flyer/Brochure: $20 - $60 per design<br><br>" +
-             "<strong>📌 AI ASSISTANT PRICING:</strong><br>" +
-             "• Basic AI Chatbot: $100 - $250<br>" +
-             "• Advanced AI Assistant: $300 - $800<br>" +
-             "• Custom AI Solution: Negotiable based on requirements<br><br>" +
-             "<strong>✨ SPECIAL OFFERS:</strong><br>" +
-             "• 10% discount for startups and non-profits<br>" +
-             "• 15% discount on complete website + branding packages<br>" +
-             "• Free consultation and quote!<br><br>" +
-             "📞 <strong>Contact for exact quote:</strong> Visit haris-sabir.netlify.app and fill out the contact form with your project details!";
-    }
-    
-    // ========== WEB DEVELOPMENT SERVICES (Full List) ==========
-    if (msg.includes('web development services') || 
-        (msg.includes('web development') && (msg.includes('service') || msg.includes('offer') || msg.includes('provide'))) ||
-        msg.includes('web dev services') ||
-        msg.includes('what web development')) {
-      return "💻 <strong>Complete Web Development Services by Haris Sabir:</strong><br><br>" +
-             "✅ <strong>Custom Website Development</strong> - Fully customized websites from scratch<br>" +
-             "✅ <strong>React.js Applications</strong> - Modern, fast, interactive single-page applications<br>" +
-             "✅ <strong>Next.js Projects</strong> - SEO-friendly, server-side rendered applications<br>" +
-             "✅ <strong>E-commerce Websites</strong> - Online stores with cart, payment integration<br>" +
-             "✅ <strong>Landing Pages</strong> - High-converting, visually stunning landing pages<br>" +
-             "✅ <strong>Portfolio Websites</strong> - Personal/professional portfolios for creatives<br>" +
-             "✅ <strong>Business Websites</strong> - Corporate sites, service-based businesses<br>" +
-             "✅ <strong>Dashboard Interfaces</strong> - Admin panels, analytics dashboards<br>" +
-             "✅ <strong>Responsive Web Design</strong> - Mobile-first, works on all devices<br>" +
-             "✅ <strong>Website Redesign</strong> - Modernize existing websites<br>" +
-             "✅ <strong>Performance Optimization</strong> - Speed, SEO, accessibility improvements<br>" +
-             "✅ <strong>API Integration</strong> - Connect with third-party services, databases<br><br>" +
-             "💰 <strong>Pricing:</strong> Starts from $100 for basic sites, $300+ for custom React apps. Ask me about pricing!<br><br>" +
-             "🛠️ <strong>Technologies:</strong> React, Next.js, JavaScript, TypeScript, Tailwind CSS, Bootstrap, Git, Firebase, REST APIs";
-    }
-    
-    // ========== GRAPHIC DESIGNING SERVICES (Full List) ==========
-    if (msg.includes('graphic designing services') || 
-        (msg.includes('graphic design') && (msg.includes('service') || msg.includes('offer') || msg.includes('provide'))) ||
-        msg.includes('graphic design services') ||
-        msg.includes('what graphic design')) {
-      return "🎨 <strong>Complete Graphic Designing Services by Haris Sabir:</strong><br><br>" +
-             "✅ <strong>Logo Design</strong> - Unique, memorable brand logos ($30-$100)<br>" +
-             "✅ <strong>Brand Identity Design</strong> - Complete brand packages, color schemes, typography ($150-$400)<br>" +
-             "✅ <strong>Social Media Graphics</strong> - Instagram posts, Facebook covers, LinkedIn banners ($50-$150 for 10 posts)<br>" +
-             "✅ <strong>Business Cards</strong> - Professional, creative business card designs ($20-$50)<br>" +
-             "✅ <strong>Flyers & Brochures</strong> - Marketing materials, event flyers, product brochures ($20-$60)<br>" +
-             "✅ <strong>Poster Design</strong> - Eye-catching posters for events, promotions ($25-$70)<br>" +
-             "✅ <strong>Banner Design</strong> - Web banners, billboards, advertisement banners ($15-$50)<br>" +
-             "✅ <strong>Packaging Design</strong> - Product packaging, labels, boxes ($50-$200)<br>" +
-             "✅ <strong>Infographics</strong> - Visual data representation, informational graphics ($40-$120)<br>" +
-             "✅ <strong>Thumbnail Design</strong> - YouTube thumbnails, video covers ($10-$30 each)<br>" +
-             "✅ <strong>Book Covers</strong> - E-books, magazines, paperback covers ($50-$150)<br>" +
-             "✅ <strong>Custom Illustrations</strong> - Unique illustrations for websites, apps, branding ($30-$200)<br><br>" +
-             "💰 <strong>Package Deal:</strong> Complete branding package (Logo + Business Card + Social Media Kit) = $200 only!<br><br>" +
-             "🛠️ <strong>Tools:</strong> Adobe Photoshop, Adobe Illustrator, Canva, Figma";
-    }
-    
-    // ========== AI ASSISTANT SERVICES (Full List) ==========
-    if (msg.includes('ai assistant services') || 
-        (msg.includes('ai assistant') && (msg.includes('service') || msg.includes('offer') || msg.includes('provide'))) ||
-        msg.includes('chatbot services') ||
-        msg.includes('what ai assistant') ||
-        msg.includes('ai services')) {
-      return "🧠 <strong>Complete AI Assistant Services by Haris Sabir:</strong><br><br>" +
-             "✅ <strong>Custom AI Chatbots</strong> - Smart chatbots for websites, WhatsApp, Telegram ($100-$250)<br>" +
-             "✅ <strong>AI Website Assistants</strong> - Interactive AI assistants like this one for your site ($150-$400)<br>" +
-             "✅ <strong>OpenAI Integration</strong> - GPT-powered chatbots and content generators ($200-$500)<br>" +
-             "✅ <strong>Customer Support Bots</strong> - 24/7 automated customer service solutions ($150-$400)<br>" +
-             "✅ <strong>Lead Generation Bots</strong> - Capture and qualify leads automatically ($100-$300)<br>" +
-             "✅ <strong>Voice Assistants</strong> - Custom voice-enabled AI assistants ($300-$800)<br>" +
-             "✅ <strong>AI Content Generators</strong> - Automated content creation tools ($150-$500)<br>" +
-             "✅ <strong>Knowledge Base Bots</strong> - AI that answers questions about your business/services ($100-$300)<br>" +
-             "✅ <strong>Multi-language AI</strong> - Assistants that speak multiple languages ($200-$600)<br>" +
-             "✅ <strong>Custom AI Solutions</strong> - Tailored AI tools for specific business needs (Negotiable)<br><br>" +
-             "💰 <strong>Special:</strong> Get an AI assistant like this one for your business starting at $150!<br><br>" +
-             "🛠️ <strong>Technologies:</strong> OpenAI API, Custom JavaScript AI, Python, Dialogflow, Rasa";
-    }
-    
-    // ========== UI/UX DESIGN SERVICES (Full List) ==========
-    if (msg.includes('ui/ux design services') || 
-        (msg.includes('ui/ux') && (msg.includes('service') || msg.includes('offer') || msg.includes('provide'))) ||
-        msg.includes('ui design services') ||
-        msg.includes('ux design services') ||
-        msg.includes('what ui/ux')) {
-      return "📐 <strong>Complete UI/UX Design Services by Haris Sabir:</strong><br><br>" +
-             "✅ <strong>Figma Design</strong> - Professional UI designs in Figma ($50-$300)<br>" +
-             "✅ <strong>Wireframing</strong> - Low-fidelity layouts, structure planning ($30-$150)<br>" +
-             "✅ <strong>Prototyping</strong> - Interactive clickable prototypes ($40-$200)<br>" +
-             "✅ <strong>Design Systems</strong> - Component libraries, style guides ($100-$400)<br>" +
-             "✅ <strong>Mobile App Design</strong> - iOS/Android app interfaces ($100-$500)<br>" +
-             "✅ <strong>Website UI Design</strong> - Modern, aesthetic web interfaces ($80-$400)<br>" +
-             "✅ <strong>User Research</strong> - Understanding target audience needs ($50-$200)<br>" +
-             "✅ <strong>Interactive Mockups</strong> - High-fidelity animated designs ($60-$300)<br>" +
-             "✅ <strong>Responsive Layouts</strong> - Designs for all screen sizes ($40-$200)<br>" +
-             "✅ <strong>User Flow Mapping</strong> - Visual user journey design ($30-$150)<br>" +
-             "✅ <strong>Usability Testing</strong> - Testing and improving user experience ($50-$250)<br>" +
-             "✅ <strong>Design-to-Code</strong> - Convert designs to HTML/CSS/React ($100-$500)<br><br>" +
-             "💰 <strong>Package:</strong> Complete UI/UX design for website/app (5 screens + prototype) = $250 only!<br><br>" +
-             "🛠️ <strong>Tools:</strong> Figma, Adobe XD, Sketch, Photoshop, Illustrator";
-    }
-    
-    // ========== HIRE / CONTACT ==========
-    if (msg.includes('hire') || msg.includes('contact') || msg.includes('collaborate') || 
-        msg.includes('freelance') || msg.includes('work with') || msg.includes('how to hire')) {
-      return "🤝 <strong>Hire Haris Sabir:</strong><br><br>" +
-             "Haris is available for:<br>" +
-             "• 💻 <strong>Freelance Projects</strong> - Short-term and long-term<br>" +
-             "• 🏢 <strong>Full-time Opportunities</strong> - Remote/On-site<br>" +
-             "• 🤝 <strong>Collaborations</strong> - Agency partnerships<br><br>" +
-             "<strong>How to Connect:</strong><br>" +
-             "📧 Visit his portfolio: <strong>haris-sabir.netlify.app</strong><br>" +
-             "📱 Find contact form and social links there<br>" +
-             "💬 Or ask me for a custom quote!<br><br>" +
-             "<strong>💰 Pricing Summary:</strong><br>" +
-             "• Web Development: $100 - $2000+<br>" +
-             "• Graphic Design: $20 - $400<br>" +
-             "• AI Assistant: $100 - $800<br>" +
-             "• UI/UX Design: $30 - $500<br><br>" +
-             "✨ <strong>Free consultation!</strong> Let's discuss your project and get an exact quote. 🚀";
-    }
-    
-    // ========== GREETINGS ==========
-    if (msg.match(/^(hi|hello|hey|assalam|salam|namaste|hola|greetings|good morning|good evening)/i)) {
-      return "👋 Assalam-o-Alaikum! I'm Haris's AI assistant. I can tell you about:<br><br>" +
-             "💻 <strong>Web Development</strong> - Custom websites, React apps, E-commerce<br>" +
-             "🎨 <strong>Graphic Designing</strong> - Logos, branding, social media posts, flyers<br>" +
-             "🧠 <strong>AI Assistant</strong> - Custom chatbots, smart assistants, AI integration<br>" +
-             "📐 <strong>UI/UX Design</strong> - Figma designs, prototypes, design systems<br>" +
-             "💰 <strong>Pricing</strong> - Packages, rates, custom quotes<br><br>" +
-             "Ask me: <strong>'Web development services'</strong> or <strong>'What are your prices?'</strong> for complete details!";
-    }
-    
-    // ========== TECH STACK ==========
-    if (msg.includes('tech stack') || msg.includes('technologies') || msg.includes('skills')) {
-      return "🛠️ <strong>Haris's Complete Tech Stack:</strong><br><br>" +
-             "<strong>Web Development:</strong> React, Next.js, JavaScript, TypeScript, Tailwind CSS, Bootstrap<br>" +
-             "<strong>Graphic Design:</strong> Photoshop, Illustrator, Canva, Figma<br>" +
-             "<strong>AI Development:</strong> OpenAI API, Custom JavaScript AI, Dialogflow<br>" +
-             "<strong>UI/UX Design:</strong> Figma, Adobe XD, Prototyping<br><br>" +
-             "💰 <strong>Pricing:</strong> Projects start from $100. Ask me for a custom quote!";
-    }
-    
-    // ========== PROJECTS ==========
-    if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio')) {
-      return "🚀 <strong>Haris's Work & Projects:</strong><br><br>" +
-             "• 💻 <strong>Custom AI Assistant</strong> - This interactive AI assistant you're using now! ($150 value)<br>" +
-             "• 🛒 <strong>E-commerce Websites</strong> - Fully functional online stores ($300-$800)<br>" +
-             "• 🎨 <strong>Brand Identity Designs</strong> - Logos, business cards, brand packages ($150-$400)<br>" +
-             "• 🌐 <strong>Portfolio Websites</strong> - Modern, responsive portfolios ($100-$300)<br>" +
-             "• 🧠 <strong>AI Chatbots</strong> - Smart customer support bots ($150-$400)<br>" +
-             "• 📱 <strong>UI/UX Designs</strong> - Figma prototypes for mobile and web ($100-$500)<br><br>" +
-             "Check live work at: <strong>haris-sabir.netlify.app</strong><br>" +
-             "💰 Ask me about pricing for similar projects!";
-    }
-    
-    // ========== FALLBACK ==========
-    return "💡 <strong>I can help you with Haris's services and pricing!</strong><br><br>" +
-           "Try asking about:<br><br>" +
-           "• <strong>'Web development services'</strong> - Custom websites, React, E-commerce<br>" +
-           "• <strong>'Graphic designing services'</strong> - Logos, branding, social media posts<br>" +
-           "• <strong>'AI assistant services'</strong> - Chatbots, AI integration, smart assistants<br>" +
-           "• <strong>'UI/UX design services'</strong> - Figma, prototyping, design systems<br>" +
-           "• <strong>'What are your prices?'</strong> - Complete pricing breakdown<br>" +
-           "• <strong>'How can I hire you?'</strong> - Contact and collaboration info<br><br>" +
-           "💰 <strong>Quick Price Guide:</strong> Web Dev ($100+), Graphic Design ($20+), AI Assistant ($100+), UI/UX ($30+)<br><br>" +
-           "What would you like to know?";
-  }
-
-  async function handleSend() {
-    const message = userInput.value.trim();
-    if (!message) return;
-    
-    sendBtn.disabled = true;
-    userInput.disabled = true;
-    
-    addMessage('user', message, true);
-    userInput.value = '';
-    
-    showTyping();
-    
-    setTimeout(() => {
-      removeTyping();
-      const response = getAIResponse(message);
-      addMessage('bot', response, false);
-      
-      sendBtn.disabled = false;
-      userInput.disabled = false;
-      userInput.focus();
-    }, 500);
-  }
-  
-  sendBtn.addEventListener('click', handleSend);
-  userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSend();
-  });
-  
-  document.querySelectorAll('.quick-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const question = btn.getAttribute('data-question');
-      if (question) {
-        userInput.value = question;
-        handleSend();
-      }
-    });
-  });
-  
-  userInput.focus();
-</script>
+        async function handleSend() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            
+            sendBtn.disabled = true;
+            userInput.disabled = true;
+            
+            addMessage(message, true);
+            userInput.value = '';
+            
+            showTyping();
+            
+            setTimeout(() => {
+                removeTyping();
+                const response = getResponse(message);
+                addMessage(response, false);
+                sendBtn.disabled = false;
+                userInput.disabled = false;
+            }, 500);
+        }
+        
+        sendBtn.addEventListener('click', handleSend);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+        
+        document.querySelectorAll('.quick-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.getAttribute('data-q');
+                if (question) {
+                    userInput.value = question;
+                    handleSend();
+                }
+            });
+        });
+        
+        function askAbout(service) {
+            const questions = {
+                web: "What web development services do you offer with pricing?",
+                app: "What app development services do you offer with pricing?",
+                ai: "What AI chatbot services do you offer with pricing?",
+                graphic: "What graphic designing services do you offer with pricing?"
+            };
+            userInput.value = questions[service];
+            handleSend();
+        }
+        
+        function goToHome() {
+            window.location.href = "https://nexvoratech.netlify.app";
+        }
+        
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
